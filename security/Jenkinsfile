@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    triggers { pollSCM('H/5 * * * *') }
+    options { disableConcurrentBuilds() }
+    stages {
+        stage('Unit gate') {
+            steps { sh 'python3 -m unittest tests.test_unit -v' }
+        }
+        stage('Candidate and integration gate') {
+            steps {
+                // The authorized lab is bootstrapped once with scripts.setup.
+                // AppRole bootstrap material lives in the protected runtime directory.
+                sh 'python3 -m scripts.pipeline'
+            }
+        }
+    }
+    post {
+        always { archiveArtifacts artifacts: 'docs/commands/pipeline-*.json', allowEmptyArchive: true }
+        success { echo 'Unit and integration gates passed before promotion' }
+        failure { echo 'Release blocked; inspect the failed gate' }
+    }
+}
