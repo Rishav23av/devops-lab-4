@@ -1,4 +1,5 @@
 .runtime
+.jenkins-workspace
 .git
 __pycache__
 **/__pycache__
