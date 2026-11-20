@@ -1,0 +1,10 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "scenario": "success",
+  "deployment_performed": false,
+  "unit_passed": true,
+  "integration_passed": true,
+  "ready_for_promotion": true,
+  "candidate_id": "75c8d99946a8cb505a7e96d14cfd1535fa0ea29d6da93c45c79870f7ba759e45"
+}

@@ -1,0 +1,1 @@
+{"integration_checks": 5, "failed": 0, "secret_printed": false}

@@ -1,0 +1,95 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "promotion_stages": [
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 3.43,
+      "environment_counts": {
+        "blue": 180,
+        "green": 20
+      },
+      "requested_green_percent": 10,
+      "sample_users": 200,
+      "repeated_user_assignment_stable": true,
+      "repeated_users_checked": 20,
+      "decision": "promote"
+    },
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 2.934,
+      "environment_counts": {
+        "blue": 152,
+        "green": 48
+      },
+      "requested_green_percent": 25,
+      "sample_users": 200,
+      "repeated_user_assignment_stable": true,
+      "repeated_users_checked": 20,
+      "decision": "promote"
+    },
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 4.596,
+      "environment_counts": {
+        "blue": 97,
+        "green": 103
+      },
+      "requested_green_percent": 50,
+      "sample_users": 200,
+      "repeated_user_assignment_stable": true,
+      "repeated_users_checked": 20,
+      "decision": "promote"
+    },
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 2.386,
+      "environment_counts": {
+        "green": 200
+      },
+      "requested_green_percent": 100,
+      "sample_users": 200,
+      "repeated_user_assignment_stable": true,
+      "repeated_users_checked": 20,
+      "decision": "promote"
+    }
+  ],
+  "failed_release": {
+    "requests": 200,
+    "errors": 20,
+    "error_rate": 0.1,
+    "p95_ms": 2.247,
+    "environment_counts": {
+      "blue": 180,
+      "green": 20
+    },
+    "decision": "rollback"
+  },
+  "after_rollback": {
+    "requests": 100,
+    "errors": 0,
+    "error_rate": 0.0,
+    "p95_ms": 2.204,
+    "environment_counts": {
+      "blue": 100
+    }
+  },
+  "thresholds": {
+    "error_rate": 0.01,
+    "p95_ms": 250
+  },
+  "cohort_key": "X-Lab-User header, deterministic Nginx split_clients hash",
+  "limitation": "short local batches; a production deployment should use a trusted user identity",
+  "execution_environment": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "python": "3.12.3"
+  }
+}

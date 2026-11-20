@@ -1,0 +1,212 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "remote": "https://github.com/Rishav23av/devops-lab-4.git",
+  "events": [
+    {
+      "at": 1795189850.636494,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [
+        "green version differs"
+      ],
+      "routing_drift": true,
+      "reconciled": true
+    },
+    {
+      "at": 1795189852.6957126,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189854.6663008,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189856.6652179,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189858.6314325,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189860.6147332,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189862.6049747,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189864.6113007,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189866.6621373,
+      "revision": "58e9990a07ca32799863b4294fc8401a3045aa03",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.2.0",
+        "traffic": {
+          "blue": 50,
+          "green": 50
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189873.8641906,
+      "revision": "adb38f71741c7255fc84085e28c9ef25eb59428b",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [
+        "green version differs"
+      ],
+      "routing_drift": true,
+      "reconciled": true
+    },
+    {
+      "at": 1795189877.860527,
+      "revision": "adb38f71741c7255fc84085e28c9ef25eb59428b",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [
+        "green stopped"
+      ],
+      "routing_drift": true,
+      "reconciled": true
+    },
+    {
+      "at": 1795189879.9064193,
+      "revision": "adb38f71741c7255fc84085e28c9ef25eb59428b",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189881.9610553,
+      "revision": "adb38f71741c7255fc84085e28c9ef25eb59428b",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    }
+  ],
+  "execution_environment": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "python": "3.12.3"
+  }
+}

@@ -1,0 +1,13 @@
+Started by user rishav
+java.lang.IllegalArgumentException: Invalid refspec refs/heads/**
+	at PluginClassLoader for git-client//org.eclipse.jgit.transport.RefSpec.checkValid(RefSpec.java:599)
+	at PluginClassLoader for git-client//org.eclipse.jgit.transport.RefSpec.<init>(RefSpec.java:203)
+	at PluginClassLoader for git-client//org.eclipse.jgit.transport.RefSpec.<init>(RefSpec.java:255)
+	at PluginClassLoader for git//jenkins.plugins.git.GitSCMFileSystem$BuilderImpl.build(GitSCMFileSystem.java:407)
+	at PluginClassLoader for scm-api//jenkins.scm.api.SCMFileSystem.of(SCMFileSystem.java:219)
+	at PluginClassLoader for workflow-cps//org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition.create(CpsScmFlowDefinition.java:123)
+	at PluginClassLoader for workflow-cps//org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition.create(CpsScmFlowDefinition.java:70)
+	at PluginClassLoader for workflow-job//org.jenkinsci.plugins.workflow.job.WorkflowRun.run(WorkflowRun.java:333)
+	at hudson.model.ResourceController.execute(ResourceController.java:97)
+	at hudson.model.Executor.run(Executor.java:456)
+Finished: FAILURE

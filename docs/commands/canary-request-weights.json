@@ -1,0 +1,78 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "promotion_stages": [
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 1.981,
+      "environment_counts": {
+        "blue": 180,
+        "green": 20
+      },
+      "requested_green_percent": 10,
+      "decision": "promote"
+    },
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 1.853,
+      "environment_counts": {
+        "blue": 150,
+        "green": 50
+      },
+      "requested_green_percent": 25,
+      "decision": "promote"
+    },
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 1.832,
+      "environment_counts": {
+        "blue": 100,
+        "green": 100
+      },
+      "requested_green_percent": 50,
+      "decision": "promote"
+    },
+    {
+      "requests": 200,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p95_ms": 1.662,
+      "environment_counts": {
+        "green": 200
+      },
+      "requested_green_percent": 100,
+      "decision": "promote"
+    }
+  ],
+  "failed_release": {
+    "requests": 200,
+    "errors": 20,
+    "error_rate": 0.1,
+    "p95_ms": 1.371,
+    "environment_counts": {
+      "blue": 180,
+      "green": 20
+    },
+    "decision": "rollback"
+  },
+  "after_rollback": {
+    "requests": 100,
+    "errors": 0,
+    "error_rate": 0.0,
+    "p95_ms": 1.258,
+    "environment_counts": {
+      "blue": 100
+    }
+  },
+  "thresholds": {
+    "error_rate": 0.01,
+    "p95_ms": 250
+  },
+  "limitation": "short local batches, no user-stickiness or production SLO proof"
+}

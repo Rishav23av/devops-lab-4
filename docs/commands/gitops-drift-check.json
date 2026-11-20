@@ -1,0 +1,21 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "remote": "https://github.com/Rishav23av/devops-lab-4.git",
+  "declared_green_version": "2.3.0",
+  "declared_weights": {
+    "blue": 25,
+    "green": 75
+  },
+  "container_restart_seconds": 3.95,
+  "routing_repair_seconds": 0.31,
+  "drift_cases": [
+    "stopped green container",
+    "manual green 100 percent route"
+  ],
+  "source": "remote main branch fetched automatically",
+  "execution_environment": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "python": "3.12.3"
+  }
+}

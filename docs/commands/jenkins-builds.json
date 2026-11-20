@@ -1,0 +1,263 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "environment": "Ubuntu 24.04.5 LTS",
+  "builds": [
+    {
+      "number": 2,
+      "scenario": "setup-refspec-error",
+      "result": "FAILURE",
+      "url": "http://127.0.0.1:8089/job/devops-lab-4/2/",
+      "jenkins_version": "2.580.2",
+      "stages": [],
+      "deploy_skipped": false,
+      "promotion_command_ran": false
+    },
+    {
+      "number": 3,
+      "scenario": "setup-config-mount-error",
+      "result": "FAILURE",
+      "url": "http://127.0.0.1:8089/job/devops-lab-4/3/",
+      "jenkins_version": "2.580.2",
+      "stages": [
+        {
+          "name": "Checkout",
+          "status": "SUCCESS",
+          "duration_ms": 909
+        },
+        {
+          "name": "Ubuntu tools",
+          "status": "SUCCESS",
+          "duration_ms": 295
+        },
+        {
+          "name": "Unit gate",
+          "status": "SUCCESS",
+          "duration_ms": 327
+        },
+        {
+          "name": "Candidate and integration gate",
+          "status": "SUCCESS",
+          "duration_ms": 8389
+        },
+        {
+          "name": "Deploy",
+          "status": "FAILED",
+          "duration_ms": 586
+        },
+        {
+          "name": "Declarative: Post Actions",
+          "status": "SUCCESS",
+          "duration_ms": 31
+        }
+      ],
+      "deploy_skipped": false,
+      "promotion_command_ran": true
+    },
+    {
+      "number": 4,
+      "scenario": "setup-checkout-isolation-error",
+      "result": "FAILURE",
+      "url": "http://127.0.0.1:8089/job/devops-lab-4/4/",
+      "jenkins_version": "2.580.2",
+      "stages": [
+        {
+          "name": "Checkout",
+          "status": "FAILED",
+          "duration_ms": 330
+        },
+        {
+          "name": "Ubuntu tools",
+          "status": "FAILED",
+          "duration_ms": 46
+        },
+        {
+          "name": "Unit gate",
+          "status": "FAILED",
+          "duration_ms": 35
+        },
+        {
+          "name": "Candidate and integration gate",
+          "status": "FAILED",
+          "duration_ms": 26
+        },
+        {
+          "name": "Deploy",
+          "status": "FAILED",
+          "duration_ms": 21
+        },
+        {
+          "name": "Declarative: Post Actions",
+          "status": "SUCCESS",
+          "duration_ms": 29
+        }
+      ],
+      "deploy_skipped": true,
+      "promotion_command_ran": false
+    },
+    {
+      "number": 5,
+      "scenario": "success",
+      "result": "SUCCESS",
+      "url": "http://127.0.0.1:8089/job/devops-lab-4/5/",
+      "jenkins_version": "2.580.2",
+      "stages": [
+        {
+          "name": "Checkout",
+          "status": "SUCCESS",
+          "duration_ms": 1227
+        },
+        {
+          "name": "Ubuntu tools",
+          "status": "SUCCESS",
+          "duration_ms": 298
+        },
+        {
+          "name": "Unit gate",
+          "status": "SUCCESS",
+          "duration_ms": 313
+        },
+        {
+          "name": "Candidate and integration gate",
+          "status": "SUCCESS",
+          "duration_ms": 8365
+        },
+        {
+          "name": "Deploy",
+          "status": "SUCCESS",
+          "duration_ms": 860
+        },
+        {
+          "name": "Declarative: Post Actions",
+          "status": "SUCCESS",
+          "duration_ms": 39
+        }
+      ],
+      "deploy_skipped": false,
+      "promotion_command_ran": true
+    },
+    {
+      "number": 6,
+      "scenario": "unit-failure",
+      "result": "FAILURE",
+      "url": "http://127.0.0.1:8089/job/devops-lab-4/6/",
+      "jenkins_version": "2.580.2",
+      "stages": [
+        {
+          "name": "Checkout",
+          "status": "SUCCESS",
+          "duration_ms": 748
+        },
+        {
+          "name": "Ubuntu tools",
+          "status": "SUCCESS",
+          "duration_ms": 288
+        },
+        {
+          "name": "Unit gate",
+          "status": "FAILED",
+          "duration_ms": 363
+        },
+        {
+          "name": "Candidate and integration gate",
+          "status": "FAILED",
+          "duration_ms": 41
+        },
+        {
+          "name": "Deploy",
+          "status": "FAILED",
+          "duration_ms": 19
+        },
+        {
+          "name": "Declarative: Post Actions",
+          "status": "SUCCESS",
+          "duration_ms": 21
+        }
+      ],
+      "deploy_skipped": true,
+      "promotion_command_ran": false
+    },
+    {
+      "number": 7,
+      "scenario": "integration-failure",
+      "result": "FAILURE",
+      "url": "http://127.0.0.1:8089/job/devops-lab-4/7/",
+      "jenkins_version": "2.580.2",
+      "stages": [
+        {
+          "name": "Checkout",
+          "status": "SUCCESS",
+          "duration_ms": 703
+        },
+        {
+          "name": "Ubuntu tools",
+          "status": "SUCCESS",
+          "duration_ms": 285
+        },
+        {
+          "name": "Unit gate",
+          "status": "SUCCESS",
+          "duration_ms": 299
+        },
+        {
+          "name": "Candidate and integration gate",
+          "status": "FAILED",
+          "duration_ms": 5551
+        },
+        {
+          "name": "Deploy",
+          "status": "FAILED",
+          "duration_ms": 22
+        },
+        {
+          "name": "Declarative: Post Actions",
+          "status": "SUCCESS",
+          "duration_ms": 29
+        }
+      ],
+      "deploy_skipped": true,
+      "promotion_command_ran": false
+    },
+    {
+      "number": 8,
+      "scenario": "success",
+      "result": "SUCCESS",
+      "url": "http://127.0.0.1:8089/job/devops-lab-4/8/",
+      "jenkins_version": "2.580.2",
+      "stages": [
+        {
+          "name": "Checkout",
+          "status": "SUCCESS",
+          "duration_ms": 674
+        },
+        {
+          "name": "Ubuntu tools",
+          "status": "SUCCESS",
+          "duration_ms": 285
+        },
+        {
+          "name": "Unit gate",
+          "status": "SUCCESS",
+          "duration_ms": 300
+        },
+        {
+          "name": "Candidate and integration gate",
+          "status": "SUCCESS",
+          "duration_ms": 6801
+        },
+        {
+          "name": "Deploy",
+          "status": "SUCCESS",
+          "duration_ms": 529
+        },
+        {
+          "name": "Declarative: Post Actions",
+          "status": "SUCCESS",
+          "duration_ms": 26
+        }
+      ],
+      "deploy_skipped": false,
+      "promotion_command_ran": true
+    }
+  ]
+}

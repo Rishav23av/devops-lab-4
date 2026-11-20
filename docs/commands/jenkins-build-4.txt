@@ -1,0 +1,148 @@
+Started by user rishav
+Started by an SCM change
+Obtained security/Jenkinsfile from git https://github.com/Rishav23av/devops-lab-4.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/devops-lab-4
+[Pipeline] {
+[Pipeline] ws
+Running in /workspace
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/Rishav23av/devops-lab-4.git
+ERROR: Failed to clean the workspace
+jenkins.util.io.CompositeIOException: Unable to delete '/workspace'. Tried 3 times (of a maximum of 3) waiting 0.1 sec between attempts.
+	at jenkins.util.io.PathRemover.forceRemoveDirectoryContents(PathRemover.java:86)
+	at hudson.Util.deleteContentsRecursive(Util.java:304)
+	at hudson.Util.deleteContentsRecursive(Util.java:293)
+	at PluginClassLoader for git-client//org.jenkinsci.plugins.gitclient.CliGitAPIImpl$2.execute(CliGitAPIImpl.java:819)
+	at PluginClassLoader for git//hudson.plugins.git.GitSCM.retrieveChanges(GitSCM.java:1236)
+	at PluginClassLoader for git//hudson.plugins.git.GitSCM._checkout(GitSCM.java:1326)
+	at PluginClassLoader for git//hudson.plugins.git.GitSCM.checkout(GitSCM.java:1293)
+	at PluginClassLoader for workflow-scm-step//org.jenkinsci.plugins.workflow.steps.scm.SCMStep.checkout(SCMStep.java:136)
+	at PluginClassLoader for workflow-scm-step//org.jenkinsci.plugins.workflow.steps.scm.SCMStep$StepExecutionImpl.run(SCMStep.java:101)
+	at PluginClassLoader for workflow-scm-step//org.jenkinsci.plugins.workflow.steps.scm.SCMStep$StepExecutionImpl.run(SCMStep.java:88)
+	at PluginClassLoader for workflow-step-api//org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution.lambda$start$0(SynchronousNonBlockingStepExecution.java:49)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+	Suppressed: jenkins.util.io.CompositeIOException: Unable to remove directory /workspace/.runtime with directory contents: []
+		at jenkins.util.io.PathRemover.removeOrMakeRemovableThenRemove(PathRemover.java:244)
+		at jenkins.util.io.PathRemover.tryRemoveFile(PathRemover.java:199)
+		at jenkins.util.io.PathRemover.tryRemoveRecursive(PathRemover.java:210)
+		at jenkins.util.io.PathRemover.tryRemoveDirectoryContents(PathRemover.java:220)
+		at jenkins.util.io.PathRemover.forceRemoveDirectoryContents(PathRemover.java:83)
+		... 15 more
+		Suppressed: java.nio.file.FileSystemException: /workspace/.runtime: Device or resource busy
+			at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:100)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+			at java.base/sun.nio.fs.UnixFileSystemProvider.implDelete(UnixFileSystemProvider.java:291)
+			at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+			at java.base/java.nio.file.Files.deleteIfExists(Files.java:1192)
+			at jenkins.util.io.PathRemover.removeOrMakeRemovableThenRemove(PathRemover.java:231)
+			... 19 more
+		Suppressed: java.nio.file.FileSystemException: /workspace/.runtime: Device or resource busy
+			at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:100)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+			at java.base/sun.nio.fs.UnixFileSystemProvider.implDelete(UnixFileSystemProvider.java:291)
+			at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+			at java.base/java.nio.file.Files.deleteIfExists(Files.java:1192)
+			at jenkins.util.io.PathRemover.removeOrMakeRemovableThenRemove(PathRemover.java:235)
+			... 19 more
+ERROR: Error cloning remote repo 'origin'
+hudson.plugins.git.GitException: Failed to delete workspace
+	at PluginClassLoader for git-client//org.jenkinsci.plugins.gitclient.CliGitAPIImpl$2.execute(CliGitAPIImpl.java:822)
+	at PluginClassLoader for git//hudson.plugins.git.GitSCM.retrieveChanges(GitSCM.java:1236)
+	at PluginClassLoader for git//hudson.plugins.git.GitSCM._checkout(GitSCM.java:1326)
+	at PluginClassLoader for git//hudson.plugins.git.GitSCM.checkout(GitSCM.java:1293)
+	at PluginClassLoader for workflow-scm-step//org.jenkinsci.plugins.workflow.steps.scm.SCMStep.checkout(SCMStep.java:136)
+	at PluginClassLoader for workflow-scm-step//org.jenkinsci.plugins.workflow.steps.scm.SCMStep$StepExecutionImpl.run(SCMStep.java:101)
+	at PluginClassLoader for workflow-scm-step//org.jenkinsci.plugins.workflow.steps.scm.SCMStep$StepExecutionImpl.run(SCMStep.java:88)
+	at PluginClassLoader for workflow-step-api//org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution.lambda$start$0(SynchronousNonBlockingStepExecution.java:49)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: jenkins.util.io.CompositeIOException: Unable to delete '/workspace'. Tried 3 times (of a maximum of 3) waiting 0.1 sec between attempts.
+	at jenkins.util.io.PathRemover.forceRemoveDirectoryContents(PathRemover.java:86)
+	at hudson.Util.deleteContentsRecursive(Util.java:304)
+	at hudson.Util.deleteContentsRecursive(Util.java:293)
+	at PluginClassLoader for git-client//org.jenkinsci.plugins.gitclient.CliGitAPIImpl$2.execute(CliGitAPIImpl.java:819)
+	... 12 more
+	Suppressed: jenkins.util.io.CompositeIOException: Unable to remove directory /workspace/.runtime with directory contents: []
+		at jenkins.util.io.PathRemover.removeOrMakeRemovableThenRemove(PathRemover.java:244)
+		at jenkins.util.io.PathRemover.tryRemoveFile(PathRemover.java:199)
+		at jenkins.util.io.PathRemover.tryRemoveRecursive(PathRemover.java:210)
+		at jenkins.util.io.PathRemover.tryRemoveDirectoryContents(PathRemover.java:220)
+		at jenkins.util.io.PathRemover.forceRemoveDirectoryContents(PathRemover.java:83)
+		... 15 more
+		Suppressed: java.nio.file.FileSystemException: /workspace/.runtime: Device or resource busy
+			at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:100)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+			at java.base/sun.nio.fs.UnixFileSystemProvider.implDelete(UnixFileSystemProvider.java:291)
+			at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+			at java.base/java.nio.file.Files.deleteIfExists(Files.java:1192)
+			at jenkins.util.io.PathRemover.removeOrMakeRemovableThenRemove(PathRemover.java:231)
+			... 19 more
+		Suppressed: java.nio.file.FileSystemException: /workspace/.runtime: Device or resource busy
+			at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:100)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+			at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+			at java.base/sun.nio.fs.UnixFileSystemProvider.implDelete(UnixFileSystemProvider.java:291)
+			at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+			at java.base/java.nio.file.Files.deleteIfExists(Files.java:1192)
+			at jenkins.util.io.PathRemover.removeOrMakeRemovableThenRemove(PathRemover.java:235)
+			... 19 more
+ERROR: Error cloning remote repo 'origin'
+ERROR: Maximum checkout retry attempts reached, aborting
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ubuntu tools)
+Stage "Ubuntu tools" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit gate)
+Stage "Unit gate" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Candidate and integration gate)
+Stage "Candidate and integration gate" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+Stage "Deploy" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Release blocked; inspect the failed gate
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // ws
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: Error cloning remote repo 'origin'
+Finished: FAILURE

@@ -1,0 +1,67 @@
+Rishav | Roll no. 2301730245
+20 November 2026
+
+$ docker build --build-arg TOOLING_IMAGE=rishav-devops-jenkins:local -f jenkins/Dockerfile -t rishav-lab4-jenkins-ubuntu:local .
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.19kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/rishav-devops-jenkins:local
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 148B done
+#4 DONE 0.0s
+
+#5 [tooling 1/1] FROM docker.io/library/rishav-devops-jenkins:local@sha256:90871f495397453be525fdc50d7bfbe1269e797e64d0e979234799c5417e5ddc
+#5 resolve docker.io/library/rishav-devops-jenkins:local@sha256:90871f495397453be525fdc50d7bfbe1269e797e64d0e979234799c5417e5ddc done
+#5 DONE 0.0s
+
+#6 [stage-1 1/9] FROM docker.io/library/ubuntu:24.04@sha256:73b999393d07f2bf65a40373778a44dc9a6d54ad7718d29247d8ff9413c4d6a8
+#6 resolve docker.io/library/ubuntu:24.04@sha256:73b999393d07f2bf65a40373778a44dc9a6d54ad7718d29247d8ff9413c4d6a8 done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 1.92kB done
+#7 DONE 0.0s
+
+#8 [stage-1 3/9] COPY --from=tooling /usr/local/bin/docker /usr/local/bin/docker
+#8 CACHED
+
+#9 [stage-1 5/9] COPY --from=tooling /usr/share/jenkins/jenkins.war /opt/jenkins/jenkins.war
+#9 CACHED
+
+#10 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends     git python3 curl ca-certificates openjdk-21-jre-headless fontconfig     && if [ "arm64" = arm64 ]; then editor_arch=arm64; else editor_arch=x64; fi     && curl -fL "https://update.code.visualstudio.com/latest/linux-deb-${editor_arch}/stable" -o /tmp/code.deb     && apt-get install -y --no-install-recommends /tmp/code.deb     && rm /tmp/code.deb && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [stage-1 4/9] COPY --from=tooling /usr/local/libexec/docker/cli-plugins /usr/local/libexec/docker/cli-plugins
+#11 CACHED
+
+#12 [stage-1 6/9] COPY --from=tooling /usr/share/jenkins/ref/plugins /opt/jenkins/plugins
+#12 CACHED
+
+#13 [stage-1 7/9] COPY jenkins/init.groovy /opt/jenkins/init.groovy
+#13 DONE 0.0s
+
+#14 [stage-1 8/9] COPY jenkins/start.sh /opt/jenkins/start.sh
+#14 DONE 0.0s
+
+#15 [stage-1 9/9] RUN chmod +x /opt/jenkins/start.sh
+#15 DONE 0.1s
+
+#16 exporting to image
+#16 exporting layers 0.0s done
+#16 exporting manifest sha256:44a5caf68818a37311f2f936c495558051046c69cd76c372c06caaf1fd0fd0c1 done
+#16 exporting config sha256:c215d3d0210099f61b23a9c3f2ab2911c05b4b005e76dbb9d63b548d12b183e9 done
+#16 exporting attestation manifest sha256:c1eb809b4efa075cf68c00eb1219b675214a23c0d40244a434157e9ab9ae9784 done
+#16 exporting manifest list sha256:808a6cc60d0bbf13d496c796a1741c9ad924e7f062cf5f54ce6a5440bc750511 done
+#16 naming to docker.io/library/rishav-lab4-jenkins-ubuntu:local done
+#16 unpacking to docker.io/library/rishav-lab4-jenkins-ubuntu:local 0.0s done
+#16 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/cwd06bar6616nhxmkkdqlduj8

@@ -1,0 +1,30 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "backup_sha256": "ab66584b6c658a7da94f9a37f4f7117c3e4e612e00a2cd59b7de08624dc3b23d",
+  "restored_value": "Rishav 2301730245 backup point",
+  "post_backup_write_present_in_restore": false,
+  "restore_seconds": 0.171,
+  "snapshot_age_seconds_at_check": 0.796,
+  "failover_read_seconds": 0.147,
+  "failover_rto_seconds": 0.533,
+  "lost_acknowledged_records": 0,
+  "post_failover_write_status": 200,
+  "objectives": {
+    "snapshot_rpo_seconds": 60,
+    "restore_rto_seconds": 30,
+    "failover_rto_seconds": 10,
+    "failover_rpo_records": 0
+  },
+  "mechanism": "operator stops/fences primary, promotes standby; application tries the standby after the primary connection fails",
+  "limitations": [
+    "both Redis instances share one Docker host",
+    "manual promotion",
+    "WAIT does not provide general strong consistency",
+    "new writes have no replica until redundancy is restored"
+  ],
+  "execution_environment": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "python": "3.12.3"
+  }
+}

@@ -1,0 +1,134 @@
+Started by user rishav
+Obtained security/Jenkinsfile from git https://github.com/Rishav23av/devops-lab-4.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/devops-lab-4
+[Pipeline] {
+[Pipeline] ws
+Running in /workspace
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /workspace/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Rishav23av/devops-lab-4.git # timeout=10
+Fetching upstream changes from https://github.com/Rishav23av/devops-lab-4.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/Rishav23av/devops-lab-4.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 065e61aa9bedeee1477f77e00d09577a9a8caf62 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 065e61aa9bedeee1477f77e00d09577a9a8caf62 # timeout=10
+Commit message: "Pin the Jenkins SCM definition to the main branch"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ubuntu tools)
+[Pipeline] sh
++ cat /etc/os-release
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
++ git --version
+git version 2.43.0
++ python3 --version
+Python 3.12.3
++ code --no-sandbox --user-data-dir /tmp/lab4-code --version
+1.147.0
+8a14f0cc1b08d531eb83255ea3764ae22aa932b5
+arm64
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit gate)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ python3 -m unittest tests.test_unit -v
+test_canary_fault (tests.test_unit.ApplicationTests.test_canary_fault) ... ok
+test_health_failure (tests.test_unit.ApplicationTests.test_health_failure) ... ok
+test_health_needs_secret (tests.test_unit.ApplicationTests.test_health_needs_secret) ... ok
+test_identity_contract (tests.test_unit.ApplicationTests.test_identity_contract) ... ok
+test_invalid_json (tests.test_unit.ApplicationTests.test_invalid_json) ... ok
+test_invalid_value (tests.test_unit.ApplicationTests.test_invalid_value) ... ok
+test_secure_requires_credentials (tests.test_unit.ApplicationTests.test_secure_requires_credentials) ... ok
+test_secure_success_without_leak (tests.test_unit.ApplicationTests.test_secure_success_without_leak) ... ok
+test_state_round_trip (tests.test_unit.ApplicationTests.test_state_round_trip) ... ok
+test_unknown_route (tests.test_unit.ApplicationTests.test_unknown_route) ... ok
+test_unsupported_method (tests.test_unit.ApplicationTests.test_unsupported_method) ... ok
+test_version_contract (tests.test_unit.ApplicationTests.test_version_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.003s
+
+OK
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Candidate and integration gate)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ python3 -m scripts.pipeline --prepare-only --scenario success
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "scenario": "success",
+  "deployment_performed": false,
+  "unit_passed": true,
+  "integration_passed": true,
+  "ready_for_promotion": true,
+  "candidate_id": "75c8d99946a8cb505a7e96d14cfd1535fa0ea29d6da93c45c79870f7ba759e45"
+}
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] sh
++ python3 -m scripts.promote
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/scripts/promote.py", line 19, in <module>
+    if __name__=='__main__':print(json.dumps(promote(),indent=2))
+                                             ^^^^^^^^^
+  File "/workspace/scripts/promote.py", line 11, in promote
+    switch({'blue':0,'green':100})
+  File "/workspace/scripts/common.py", line 71, in switch
+    raise RuntimeError('Gateway configuration rejected')
+RuntimeError: Gateway configuration rejected
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Release blocked; inspect the failed gate
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // ws
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE

@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{font:17px/1.45 system-ui,sans-serif;color:#182638;margin:36px 48px;max-width:1450px}
+h1{font-size:29px;margin:0 0 8px}h2{font-size:22px;margin:24px 0 8px}
+.sub{color:#526170;margin-bottom:22px}pre{font:15px/1.35 ui-monospace,monospace;background:#f1f5f8;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere}
+table{border-collapse:collapse;width:100%;font-size:16px}td,th{padding:12px;text-align:left;border:1px solid #d7e1e8}th{background:#255575;color:white}
+</style></head><body><h1>Lab 4 - Ubuntu 24.04 installation and global Git identity</h1><div class="sub">Rishav | Roll no. 2301730245 | 20 November 2026<br>Saved experimental output. Values are from the retained command records.</div><pre>DevOps Lab 4
+Rishav | Roll no. 2301730245
+20 November 2026
+Ubuntu 24.04 controller and built-in Jenkins agent, running in Docker.
+
+$ cat /etc/os-release
+PRETTY_NAME=&quot;Ubuntu 24.04.5 LTS&quot;
+NAME=&quot;Ubuntu&quot;
+VERSION_ID=&quot;24.04&quot;
+VERSION=&quot;24.04.5 LTS (Noble Numbat)&quot;
+$ git --version
+git version 2.43.0
+
+$ git config --global --get user.name
+Rishav
+
+$ git config --global --get user.email
+174773787+Rishav23av@users.noreply.github.com
+
+$ python3 --version
+Python 3.12.3
+
+$ java -version
+openjdk version &quot;21.0.13.1&quot; 2026-11-17
+OpenJDK Runtime Environment (build 21.0.13.1+2-1-24.04.1-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.13.1+2-1-24.04.1-Ubuntu, mixed mode, sharing)
+
+$ code --no-sandbox --user-data-dir /tmp/lab4-code --version
+1.147.0
+8a14f0cc1b08d531eb83255ea3764ae22aa932b5
+arm64
+
+$ docker compose version
+Docker Compose version v5.7.1
+</pre></body></html>

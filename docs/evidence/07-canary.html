@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{font:17px/1.45 system-ui,sans-serif;color:#182638;margin:36px 48px;max-width:1450px}
+h1{font-size:29px;margin:0 0 8px}h2{font-size:22px;margin:24px 0 8px}
+.sub{color:#526170;margin-bottom:22px}pre{font:15px/1.35 ui-monospace,monospace;background:#f1f5f8;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere}
+table{border-collapse:collapse;width:100%;font-size:16px}td,th{padding:12px;text-align:left;border:1px solid #d7e1e8}th{background:#255575;color:white}
+</style></head><body><h1>Lab 4 - Stable-user canary rollout and automatic rollback</h1><div class="sub">Rishav | Roll no. 2301730245 | 20 November 2026<br>Saved experimental output. Values are from the retained command records.</div><table><tr><th>Target green</th><th>Sample users</th><th>Blue / green</th><th>Errors</th><th>p95 ms</th><th>Stable repeat users</th></tr><tr><td>10%</td><td>200</td><td>180 / 20</td><td>0</td><td>3.43</td><td>True</td></tr><tr><td>25%</td><td>200</td><td>152 / 48</td><td>0</td><td>2.934</td><td>True</td></tr><tr><td>50%</td><td>200</td><td>97 / 103</td><td>0</td><td>4.596</td><td>True</td></tr><tr><td>100%</td><td>200</td><td>0 / 200</td><td>0</td><td>2.386</td><td>True</td></tr></table><h2>Deliberately faulty canary</h2><pre>{
+  &quot;requests&quot;: 200,
+  &quot;errors&quot;: 20,
+  &quot;error_rate&quot;: 0.1,
+  &quot;p95_ms&quot;: 2.247,
+  &quot;environment_counts&quot;: {
+    &quot;blue&quot;: 180,
+    &quot;green&quot;: 20
+  },
+  &quot;decision&quot;: &quot;rollback&quot;
+}</pre><h2>After metric-triggered rollback</h2><pre>{
+  &quot;requests&quot;: 100,
+  &quot;errors&quot;: 0,
+  &quot;error_rate&quot;: 0.0,
+  &quot;p95_ms&quot;: 2.204,
+  &quot;environment_counts&quot;: {
+    &quot;blue&quot;: 100
+  }
+}</pre></body></html>

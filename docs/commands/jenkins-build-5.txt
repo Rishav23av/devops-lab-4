@@ -1,0 +1,133 @@
+Started by user rishav
+Obtained security/Jenkinsfile from git https://github.com/Rishav23av/devops-lab-4.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/devops-lab-4
+[Pipeline] {
+[Pipeline] ws
+Running in /workspace
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/Rishav23av/devops-lab-4.git
+ > git init /workspace # timeout=10
+Fetching upstream changes from https://github.com/Rishav23av/devops-lab-4.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/Rishav23av/devops-lab-4.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/Rishav23av/devops-lab-4.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision dfca0578be7fc7213e0fd42d9a0130968c634a13 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f dfca0578be7fc7213e0fd42d9a0130968c634a13 # timeout=10
+Commit message: "Keep runtime secrets outside disposable Jenkins checkouts"
+ > git rev-list --no-walk 065e61aa9bedeee1477f77e00d09577a9a8caf62 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Ubuntu tools)
+[Pipeline] sh
++ cat /etc/os-release
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
++ git --version
+git version 2.43.0
++ python3 --version
+Python 3.12.3
++ code --no-sandbox --user-data-dir /tmp/lab4-code --version
+1.147.0
+8a14f0cc1b08d531eb83255ea3764ae22aa932b5
+arm64
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit gate)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ python3 -m unittest tests.test_unit -v
+test_canary_fault (tests.test_unit.ApplicationTests.test_canary_fault) ... ok
+test_health_failure (tests.test_unit.ApplicationTests.test_health_failure) ... ok
+test_health_needs_secret (tests.test_unit.ApplicationTests.test_health_needs_secret) ... ok
+test_identity_contract (tests.test_unit.ApplicationTests.test_identity_contract) ... ok
+test_invalid_json (tests.test_unit.ApplicationTests.test_invalid_json) ... ok
+test_invalid_value (tests.test_unit.ApplicationTests.test_invalid_value) ... ok
+test_secure_requires_credentials (tests.test_unit.ApplicationTests.test_secure_requires_credentials) ... ok
+test_secure_success_without_leak (tests.test_unit.ApplicationTests.test_secure_success_without_leak) ... ok
+test_state_round_trip (tests.test_unit.ApplicationTests.test_state_round_trip) ... ok
+test_unknown_route (tests.test_unit.ApplicationTests.test_unknown_route) ... ok
+test_unsupported_method (tests.test_unit.ApplicationTests.test_unsupported_method) ... ok
+test_version_contract (tests.test_unit.ApplicationTests.test_version_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.004s
+
+OK
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Candidate and integration gate)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ python3 -m scripts.pipeline --prepare-only --scenario success
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "scenario": "success",
+  "deployment_performed": false,
+  "unit_passed": true,
+  "integration_passed": true,
+  "ready_for_promotion": true,
+  "candidate_id": "4676a3395fa2342c17e07137601fc2a2fd5d0d309649d3363c5757dddcda0cd3"
+}
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] sh
++ python3 -m scripts.promote
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "unit_passed": true,
+  "integration_passed": true,
+  "candidate_identity_verified": true,
+  "deployment_performed": true
+}
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Unit and integration gates passed before promotion
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // ws
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

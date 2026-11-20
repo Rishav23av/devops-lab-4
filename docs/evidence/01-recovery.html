@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{font:17px/1.45 system-ui,sans-serif;color:#182638;margin:36px 48px;max-width:1450px}
+h1{font-size:29px;margin:0 0 8px}h2{font-size:22px;margin:24px 0 8px}
+.sub{color:#526170;margin-bottom:22px}pre{font:15px/1.35 ui-monospace,monospace;background:#f1f5f8;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere}
+table{border-collapse:collapse;width:100%;font-size:16px}td,th{padding:12px;text-align:left;border:1px solid #d7e1e8}th{background:#255575;color:white}
+</style></head><body><h1>Lab 4 - Backup, restore and failover</h1><div class="sub">Rishav | Roll no. 2301730245 | 20 November 2026<br>Saved experimental output. Values are from the retained command records.</div><pre>{
+  &quot;name&quot;: &quot;Rishav&quot;,
+  &quot;roll_no&quot;: &quot;2301730245&quot;,
+  &quot;backup_sha256&quot;: &quot;ab66584b6c658a7da94f9a37f4f7117c3e4e612e00a2cd59b7de08624dc3b23d&quot;,
+  &quot;restored_value&quot;: &quot;Rishav 2301730245 backup point&quot;,
+  &quot;post_backup_write_present_in_restore&quot;: false,
+  &quot;restore_seconds&quot;: 0.171,
+  &quot;snapshot_age_seconds_at_check&quot;: 0.796,
+  &quot;failover_read_seconds&quot;: 0.147,
+  &quot;failover_rto_seconds&quot;: 0.533,
+  &quot;lost_acknowledged_records&quot;: 0,
+  &quot;post_failover_write_status&quot;: 200,
+  &quot;objectives&quot;: {
+    &quot;snapshot_rpo_seconds&quot;: 60,
+    &quot;restore_rto_seconds&quot;: 30,
+    &quot;failover_rto_seconds&quot;: 10,
+    &quot;failover_rpo_records&quot;: 0
+  },
+  &quot;mechanism&quot;: &quot;operator stops/fences primary, promotes standby; application tries the standby after the primary connection fails&quot;,
+  &quot;limitations&quot;: [
+    &quot;both Redis instances share one Docker host&quot;,
+    &quot;manual promotion&quot;,
+    &quot;WAIT does not provide general strong consistency&quot;,
+    &quot;new writes have no replica until redundancy is restored&quot;
+  ],
+  &quot;execution_environment&quot;: {
+    &quot;os&quot;: &quot;Ubuntu 24.04.5 LTS&quot;,
+    &quot;python&quot;: &quot;3.12.3&quot;
+  }
+}</pre></body></html>

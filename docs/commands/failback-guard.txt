@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "./scripts/setup.py", line 23, in <module>
+    setup()
+    ~~~~~^^
+  File "./scripts/setup.py", line 9, in setup
+    raise RuntimeError('Promoted standby detected: keep the old primary fenced. Use a fresh lab after cleanup or perform a deliberate failback.')
+RuntimeError: Promoted standby detected: keep the old primary fenced. Use a fresh lab after cleanup or perform a deliberate failback.

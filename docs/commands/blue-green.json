@@ -1,0 +1,20 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "requests_during_switches": 261,
+  "errors": 0,
+  "observed_environments": [
+    "blue",
+    "green"
+  ],
+  "switch_seconds": 0.272,
+  "switches": [
+    "blue to green",
+    "green to blue rollback"
+  ],
+  "measurement": "continuous sequential requests at roughly 5 ms intervals; not a universal availability guarantee",
+  "execution_environment": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "python": "3.12.3"
+  }
+}

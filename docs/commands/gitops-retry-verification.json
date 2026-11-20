@@ -1,0 +1,101 @@
+{
+  "name": "Rishav",
+  "roll_no": "2301730245",
+  "remote": "https://github.com/Rishav23av/devops-lab-4.git",
+  "events": [
+    {
+      "at": 1795189961.228658,
+      "revision": "5c93063cf34b8e12f2c6bb4adde23eb302a81440",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189962.9774842,
+      "revision": "5c93063cf34b8e12f2c6bb4adde23eb302a81440",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189964.691263,
+      "revision": "5c93063cf34b8e12f2c6bb4adde23eb302a81440",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189966.4729486,
+      "revision": "5c93063cf34b8e12f2c6bb4adde23eb302a81440",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189968.3046741,
+      "revision": "5c93063cf34b8e12f2c6bb4adde23eb302a81440",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    },
+    {
+      "at": 1795189970.1338694,
+      "revision": "5c93063cf34b8e12f2c6bb4adde23eb302a81440",
+      "desired": {
+        "blue_version": "1.0.0",
+        "green_version": "2.3.0",
+        "traffic": {
+          "blue": 25,
+          "green": 75
+        }
+      },
+      "container_drift": [],
+      "routing_drift": false,
+      "reconciled": false
+    }
+  ],
+  "execution_environment": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "python": "3.12.3"
+  }
+}
