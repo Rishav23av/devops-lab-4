@@ -10,7 +10,7 @@ def once(remote):
     folder=RUNTIME/'gitops-source'
     if not (folder/'.git').exists():
         run(['git','clone','--depth','1','--no-checkout',remote,str(folder)])
-    run(['git','-C',str(folder),'fetch','--depth','1','origin','main'])
+    run(['git','-c','gc.auto=0','-C',str(folder),'fetch','origin','main'])
     revision=run(['git','-C',str(folder),'rev-parse','FETCH_HEAD']).stdout.strip()
     desired=json.loads(run(['git','-C',str(folder),'show','FETCH_HEAD:gitops/desired.json']).stdout)
     for name in ['blue','green']:
@@ -45,9 +45,15 @@ def once(remote):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--remote',default='https://github.com/Rishav23av/devops-lab-4.git');p.add_argument('--duration',type=int,default=60)
+    p.add_argument('--record',default='gitops-reconciliation.json')
     args=p.parse_args();events=[];deadline=time.monotonic()+args.duration
     while time.monotonic()<deadline:
-        event=once(args.remote);events.append(event)
+        try:
+            event=once(args.remote)
+        except (RuntimeError,OSError,json.JSONDecodeError) as error:
+            event={'at':time.time(),'reconciled':False,'retrying':True,
+                   'error':str(error).replace(str(ROOT),'.')}
+        events.append(event)
         print(json.dumps(event),flush=True)
-        save('gitops-reconciliation.json',{'name':'Rishav','roll_no':'2301730245','remote':args.remote,'events':events})
+        save(args.record,{'name':'Rishav','roll_no':'2301730245','remote':args.remote,'events':events})
         time.sleep(1)
