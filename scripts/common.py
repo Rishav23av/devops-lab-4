@@ -1,0 +1,77 @@
+import json
+import os
+import subprocess
+import time
+import urllib.request
+import urllib.error
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+RUNTIME = ROOT/'.runtime'
+RUNTIME.mkdir(exist_ok=True)
+os.chmod(RUNTIME, 0o700)
+URL = 'http://127.0.0.1:5040'
+
+
+def run(args, check=True, env=None):
+    result = subprocess.run(args, cwd=ROOT, text=True, stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, env=env)
+    if check and result.returncode:
+        raise RuntimeError(result.stdout)
+    return result
+
+
+def compose(*args):
+    command = ['docker', 'compose', '-f', 'deploy/compose.yml']
+    if (RUNTIME/'deploy.env').exists():
+        command += ['--env-file', str(RUNTIME/'deploy.env')]
+    return run(command+list(args))
+
+
+def request(url, method='GET', data=None, headers=None):
+    body = json.dumps(data).encode() if data is not None else None
+    req = urllib.request.Request(url, data=body, method=method, headers=headers or {})
+    req.add_header('Content-Type', 'application/json')
+    try:
+        with urllib.request.urlopen(req, timeout=3) as response:
+            raw = response.read()
+            return response.status, json.loads(raw) if raw else {}
+    except urllib.error.HTTPError as response:
+        raw = response.read()
+        return response.code, json.loads(raw) if raw else {}
+
+
+def save(name, data):
+    p = ROOT/'docs/commands'/name
+    p.parent.mkdir(parents=True, exist_ok=True)
+    if isinstance(data, str):
+        p.write_text(data.replace(str(ROOT), '.'))
+    else:
+        p.write_text(json.dumps(data, indent=2)+'\n')
+
+
+def upstream(weights):
+    assert sum(weights.values()) == 100 and all(isinstance(v, int) and v >= 0 for v in weights.values())
+    return ''.join(f'server {name}:8080 weight={weight} max_fails=0;\n'
+                   for name, weight in weights.items() if weight)
+
+
+def switch(weights):
+    folder = RUNTIME/'gateway'
+    folder.mkdir(exist_ok=True)
+    path = folder/'upstreams.conf'
+    old = path.read_text() if path.exists() else ''
+    temp = folder/'upstreams.tmp'
+    temp.write_text(upstream(weights));temp.replace(path)
+    result = run(['docker','exec','rishav-lab4-gateway','nginx','-t'], check=False)
+    if result.returncode:
+        path.write_text(old)
+        raise RuntimeError('Gateway configuration rejected')
+    run(['docker','exec','rishav-lab4-gateway','nginx','-s','reload'])
+    time.sleep(0.2)
+
+
+def app_health(name):
+    result = run(['docker','exec',f'rishav-lab4-{name}','python','-c',
+        "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8080/health').status)"],check=False)
+    return result.returncode == 0

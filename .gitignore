@@ -1,0 +1,8 @@
+.runtime/
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+backups/
+.env
+test-results/
