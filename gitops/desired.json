@@ -1,8 +1,8 @@
 {
   "blue_version": "1.0.0",
-  "green_version": "2.1.0",
+  "green_version": "2.2.0",
   "traffic": {
-    "blue": 75,
-    "green": 25
+    "blue": 50,
+    "green": 50
   }
 }
