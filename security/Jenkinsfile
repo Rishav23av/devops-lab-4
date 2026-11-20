@@ -1,18 +1,33 @@
 pipeline {
-    agent any
+    agent { node { label 'ubuntu2404'; customWorkspace '/workspace' } }
     triggers { pollSCM('H/5 * * * *') }
-    options { disableConcurrentBuilds() }
+    options { disableConcurrentBuilds(); skipDefaultCheckout(true) }
+    parameters {
+        choice(name: 'SCENARIO', choices: ['success', 'unit-failure', 'integration-failure'],
+               description: 'A failed gate must leave live traffic unchanged')
+    }
     stages {
+        stage('Checkout') { steps { checkout scm } }
+        stage('Ubuntu tools') {
+            steps { sh 'cat /etc/os-release; git --version; python3 --version; code --no-sandbox --user-data-dir /tmp/lab4-code --version' }
+        }
         stage('Unit gate') {
-            steps { sh 'python3 -m unittest tests.test_unit -v' }
+            steps {
+                script {
+                    if (params.SCENARIO == 'unit-failure') {
+                        sh 'APP_VERSION=broken-contract python3 -m unittest tests.test_unit -v'
+                    } else {
+                        sh 'python3 -m unittest tests.test_unit -v'
+                    }
+                }
+            }
         }
         stage('Candidate and integration gate') {
             steps {
-                // The authorized lab is bootstrapped once with scripts.setup.
-                // AppRole bootstrap material lives in the protected runtime directory.
-                sh 'python3 -m scripts.pipeline'
+                sh 'python3 -m scripts.pipeline --prepare-only --scenario "$SCENARIO"'
             }
         }
+        stage('Deploy') { steps { sh 'python3 -m scripts.promote' } }
     }
     post {
         always { archiveArtifacts artifacts: 'docs/commands/pipeline-*.json', allowEmptyArchive: true }

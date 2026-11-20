@@ -37,6 +37,31 @@ a Redis snapshot into an isolated instance, then fences the primary and promotes
 the standby. GitOps pulls gitops/desired.json from GitHub and repairs version,
 container-state and traffic drift.
 
+**Ubuntu 24.04 and Jenkins**
+
+The Jenkins controller and its built-in laboratory agent run in an Ubuntu 24.04
+container. Git, Python, Java 21 and the Linux VS Code package are installed there.
+The editor is also available on the host for reviewing this repository. Build the
+tooling cache and Ubuntu image with:
+
+```bash
+docker build -f jenkins/Tooling.Dockerfile -t rishav-lab4-tooling:local .
+docker build -f jenkins/Dockerfile -t rishav-lab4-jenkins-ubuntu:local .
+```
+
+The recorded build reused the matching tooling cache from the earlier labs.
+jenkins/start.sh sets the Git identity and starts Jenkins from its WAR distribution.
+security/Jenkinsfile checks out GitHub, verifies the Ubuntu tools, runs the unit
+gate, prepares and integration-tests the candidate, then promotes that exact
+validated container in a separate Deploy stage. The controller has one executor
+and the ubuntu2404 label. A dedicated local controller with Docker socket access
+is used only for trusted lab code.
+
+LAB4_HOST_ROOT allows Docker bind mounts to resolve to the host repository when
+Compose runs inside the controller. VAULT_ADDR and LAB4_URL point to the host's
+loopback-bound services through host.docker.internal. The Jenkins password and
+Vault bootstrap material remain in the ignored runtime directory.
+
 These are controlled, single-host laboratory demonstrations. Vault uses local
 HTTP and a one-share bootstrap for this lab. Failover promotion is operator
 initiated, Redis replication is asynchronous, and short traffic samples do not
