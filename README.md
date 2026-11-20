@@ -6,6 +6,32 @@ Advanced deployment experiments using a small Python app, Nginx, Redis and
 HashiCorp Vault. All host ports are bound to localhost. Python uses only its
 standard library; Docker and Docker Compose run the laboratory services.
 
+**Submission files**
+
+One PDF per portal question, in the required order. Each file includes the aim,
+configuration or commands, measured results, observations and supporting screenshots.
+All seven are below 1 MB.
+
+1. [Disaster recovery](submission/01-Disaster-Recovery-Rishav-2301730245.pdf)
+2. [Automated testing gates](submission/02-Automated-Testing-Gates-Rishav-2301730245.pdf)
+3. [Blue-green deployment](submission/03-Blue-Green-Deployment-Rishav-2301730245.pdf)
+4. [GitOps delivery](submission/04-GitOps-Delivery-Rishav-2301730245.pdf)
+5. [Advanced strategies report](submission/05-Advanced-Strategies-Report-Rishav-2301730245.pdf)
+6. [Secret management](submission/06-Secret-Management-Rishav-2301730245.pdf)
+7. [Canary deployment](submission/07-Canary-Deployment-Rishav-2301730245.pdf)
+
+[Evidence and configuration index](docs/README.md) | [Commit history](https://github.com/Rishav23av/devops-lab-4/commits/main/)
+
+**Recorded results**
+
+The final experiments ran from the Ubuntu 24.04 Jenkins environment. Jenkins builds
+5 and 8 passed; build 6 stopped at the unit gate and build 7 stopped at the integration
+gate. The blue-green sample recorded 261 requests with zero errors. The faulty 10%
+canary returned 20 errors in 200 requests and triggered rollback. GitOps repaired a
+stopped candidate in 3.95 seconds. Redis restore took 0.171 seconds and failover
+through a successful new write took 0.533 seconds. These are short, single-host
+laboratory measurements; the individual reports explain their scope and limits.
+
 **Start the lab**
 
 ```bash
@@ -25,8 +51,8 @@ python3 -m scripts.pipeline --scenario unit-failure
 python3 -m scripts.pipeline --scenario integration-failure
 python3 -m scripts.pipeline
 python3 -m scripts.traffic
-python3 -m scripts.recovery
 python3 -m scripts.reconcile --duration 60
+python3 -m scripts.recovery
 ```
 
 The first two pipeline commands are expected to fail and leave live routing
@@ -36,6 +62,10 @@ a deliberately faulty canary and a metric-triggered rollback. Recovery copies
 a Redis snapshot into an isolated instance, then fences the primary and promotes
 the standby. GitOps pulls gitops/desired.json from GitHub and repairs version,
 container-state and traffic drift.
+
+Recovery is performed last because it promotes the standby. Setup refuses to restart
+the old primary after promotion. Use a fresh stack after cleanup, or plan an explicit
+failback before reusing the recovered state.
 
 **Ubuntu 24.04 and Jenkins**
 

@@ -1,0 +1,139 @@
+Lab 4 commit history snapshot
+Rishav | Roll no. 2301730245
+
+Exported after the evidence commit. Later report commits are available at
+https://github.com/Rishav23av/devops-lab-4/commits/main/
+
+commit 1b2cf5093670c4fa8287956849427a3f97fbdd6d
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T20:48:23+05:30
+Commit date: 2026-11-20T20:48:23+05:30
+
+    Set up the application and Vault-backed laboratory stack
+
+commit 8433135f4f7340309eebbfe17601f82ef48658d7
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T20:48:23+05:30
+Commit date: 2026-11-20T20:48:23+05:30
+
+    Add test gates and deployment experiment scripts
+
+commit 7c8ac2f79f25834ca4726bc183326f7a8238ede0
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T20:49:29+05:30
+Commit date: 2026-11-20T20:49:29+05:30
+
+    Demonstrate application credential rotation
+
+commit 3fb7430478f8fe2bcf5788087986c9ece56d7c9e
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T20:49:29+05:30
+Commit date: 2026-11-20T20:49:29+05:30
+
+    Declare green version 2.1.0 and a 25 percent rollout
+
+commit 1a5020540b1ba5fed52f4b0bb4a0463d983a0741
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T20:58:12+05:30
+Commit date: 2026-11-20T20:58:12+05:30
+
+    Keep canary users in stable rollout cohorts
+
+commit 06a94804a5a0055226a7225f1a9a90cab174f8e1
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T20:58:12+05:30
+Commit date: 2026-11-20T20:58:12+05:30
+
+    Run the pipeline on an Ubuntu 24.04 Jenkins environment
+
+commit 0c5e4a271b824c3de4038277c3d15af55fec833c
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T20:59:37+05:30
+Commit date: 2026-11-20T20:59:37+05:30
+
+    Keep runtime credentials out of image build contexts
+
+commit 88025df766d56a4229b70d5343ecf61a78ba0161
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:01:24+05:30
+Commit date: 2026-11-20T21:01:24+05:30
+
+    Apply the default scenario on the first Jenkins build
+
+commit 47ac256b3c7a8708096972e196ae3dc7b7245007
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:02:50+05:30
+Commit date: 2026-11-20T21:02:50+05:30
+
+    Keep failed Jenkins builds from archiving stale gate records
+
+commit 065e61aa9bedeee1477f77e00d09577a9a8caf62
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:04:26+05:30
+Commit date: 2026-11-20T21:04:26+05:30
+
+    Pin the Jenkins SCM definition to the main branch
+
+commit f28889ac541296853dddd4f2671c04c22e38471f
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:06:28+05:30
+Commit date: 2026-11-20T21:06:28+05:30
+
+    Keep configuration mounts stable across Git checkouts
+
+commit 4f1985af5c6c5d3f195e7346c69c49b68163fa7f
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:07:56+05:30
+Commit date: 2026-11-20T21:07:56+05:30
+
+    Isolate the Jenkins checkout from the source worktree
+
+commit dfca0578be7fc7213e0fd42d9a0130968c634a13
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:11:38+05:30
+Commit date: 2026-11-20T21:11:38+05:30
+
+    Keep runtime secrets outside disposable Jenkins checkouts
+
+commit 21e697fce2a2b6400a5ae5aed45b7fc2de3baf13
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:16:19+05:30
+Commit date: 2026-11-20T21:16:19+05:30
+
+    Declare green version 2.2.0 and a 50 percent rollout
+
+commit 58e9990a07ca32799863b4294fc8401a3045aa03
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:18:54+05:30
+Commit date: 2026-11-20T21:18:54+05:30
+
+    Record the Ubuntu execution context for deployment experiments
+
+commit adb38f71741c7255fc84085e28c9ef25eb59428b
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:21:06+05:30
+Commit date: 2026-11-20T21:21:06+05:30
+
+    Promote the declared GitOps rollout to version 2.3.0
+
+commit 5c93063cf34b8e12f2c6bb4adde23eb302a81440
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:22:37+05:30
+Commit date: 2026-11-20T21:22:37+05:30
+
+    Retry GitOps fetch failures without changing the last good state
+
+commit b176ec0b704e7e823913e150cc124e5947940d7a
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:38:36+05:30
+Commit date: 2026-11-20T21:38:36+05:30
+
+    Protect promoted Redis state and capture reproducible lab evidence
+
+commit c6dbc74bed7f25018bb9c3cabc14aded177347b3
+Author: Rishav <174773787+Rishav23av@users.noreply.github.com>
+Author date: 2026-11-20T21:38:53+05:30
+Commit date: 2026-11-20T21:38:53+05:30
+
+    Retain Ubuntu command records and Jenkins gate screenshots
+
