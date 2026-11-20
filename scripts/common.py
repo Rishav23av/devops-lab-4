@@ -65,11 +65,11 @@ def switch(weights):
     temp = folder/'upstreams.tmp'
     temp.write_text(upstream(weights));temp.replace(path)
     (folder/'routing.conf').write_text(DEFAULT_ROUTING)
-    result = run(['docker','exec','rishav-lab4-gateway','nginx','-t'], check=False)
+    result = run(['docker','exec','rishav-lab4-gateway','nginx','-t','-c','/etc/nginx/lab4-source/nginx.conf'], check=False)
     if result.returncode:
         path.write_text(old)
         raise RuntimeError('Gateway configuration rejected')
-    run(['docker','exec','rishav-lab4-gateway','nginx','-s','reload'])
+    run(['docker','exec','rishav-lab4-gateway','nginx','-c','/etc/nginx/lab4-source/nginx.conf','-s','reload'])
     time.sleep(0.2)
 
 
@@ -80,8 +80,8 @@ def cohort(percent):
     else:
         text=f'split_clients "$http_x_lab_user" $lab4_backend {{ {percent}% green_pool; * blue_pool; }}\n'
     (RUNTIME/'gateway/routing.conf').write_text(text)
-    run(['docker','exec','rishav-lab4-gateway','nginx','-t'])
-    run(['docker','exec','rishav-lab4-gateway','nginx','-s','reload'])
+    run(['docker','exec','rishav-lab4-gateway','nginx','-t','-c','/etc/nginx/lab4-source/nginx.conf'])
+    run(['docker','exec','rishav-lab4-gateway','nginx','-c','/etc/nginx/lab4-source/nginx.conf','-s','reload'])
     time.sleep(.2)
 
 

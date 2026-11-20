@@ -29,10 +29,11 @@ services:
   gateway:
     image: nginx:alpine
     container_name: rishav-lab4-gateway
+    command: ["nginx", "-c", "/etc/nginx/lab4-source/nginx.conf", "-g", "daemon off;"]
     ports:
       - "127.0.0.1:5040:8080"
     volumes:
-      - ${LAB4_HOST_ROOT:-..}/deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ${LAB4_HOST_ROOT:-..}/deploy:/etc/nginx/lab4-source:ro
       - ${LAB4_HOST_ROOT:-..}/.runtime/gateway:/etc/nginx/lab4:ro
     depends_on:
       blue:
@@ -58,7 +59,7 @@ services:
     ports:
       - "127.0.0.1:8240:8200"
     volumes:
-      - ${LAB4_HOST_ROOT:-..}/vault/server.hcl:/vault/config/server.hcl:ro
+      - ${LAB4_HOST_ROOT:-..}/vault/config:/vault/config:ro
       - vault-data:/vault/data
 volumes:
   primary-data:
