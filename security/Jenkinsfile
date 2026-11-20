@@ -32,7 +32,6 @@ pipeline {
         stage('Deploy') { steps { sh 'python3 -m scripts.promote' } }
     }
     post {
-        always { archiveArtifacts artifacts: 'docs/commands/pipeline-*.json', allowEmptyArchive: true }
         success { echo 'Unit and integration gates passed before promotion' }
         failure { echo 'Release blocked; inspect the failed gate' }
     }
