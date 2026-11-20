@@ -1,0 +1,7 @@
+{
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {".runtime": true, ".jenkins-workspace": true},
+  "search.exclude": {".runtime": true, ".jenkins-workspace": true}
+}

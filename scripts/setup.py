@@ -1,9 +1,12 @@
 import json
-from .common import RUNTIME, compose, upstream, URL, request, DEFAULT_ROUTING
+from .common import RUNTIME, compose, upstream, URL, request, DEFAULT_ROUTING,run
 from .vault_store import bootstrap
 
 
 def setup():
+    role=run(['docker','exec','rishav-lab4-standby','redis-cli','INFO','replication'],check=False)
+    if role.returncode==0 and 'role:master' in role.stdout:
+        raise RuntimeError('Promoted standby detected: keep the old primary fenced. Use a fresh lab after cleanup or perform a deliberate failback.')
     result = bootstrap()
     (RUNTIME/'gateway').mkdir(exist_ok=True)
     (RUNTIME/'gateway/upstreams.conf').write_text(upstream({'blue':100,'green':0}))
