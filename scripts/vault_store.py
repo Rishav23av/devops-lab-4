@@ -3,7 +3,7 @@ import json
 import os
 import secrets
 import time
-from .common import ROOT, RUNTIME, request, compose, save
+from .common import ROOT, RUNTIME, URL, request, compose, save
 
 ADDR = os.getenv('VAULT_ADDR', 'http://127.0.0.1:8240')
 
@@ -81,5 +81,25 @@ def deliver():
     return result
 
 
+def rotate():
+    old=(RUNTIME/'app-api-key').read_text().strip()
+    root=json.loads((RUNTIME/'vault-bootstrap.json').read_text())['root_token']
+    code,_=api('secret/data/lab4/app','POST',{'data':{'api_key':secrets.token_urlsafe(32)}},root)
+    assert code==200
+    deliver()
+    new=(RUNTIME/'app-api-key').read_text().strip()
+    denied,_=request(URL+'/secure',headers={'X-API-Key':old})
+    allowed,_=request(URL+'/secure',headers={'X-API-Key':new})
+    result={'name':'Rishav','roll_no':'2301730245','old_key_status':denied,
+        'new_key_status':allowed,'key_changed':old!=new,'credentials_printed':False,
+        'method':'operator writes a new KV value; AppRole delivers it to the protected file'}
+    assert denied==401 and allowed==200 and old!=new
+    save('secret-rotation.json',result)
+    return result
+
+
 if __name__ == '__main__':
-    print(json.dumps(bootstrap(),indent=2))
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--rotate',action='store_true')
+    args=parser.parse_args()
+    print(json.dumps(rotate() if args.rotate else bootstrap(),indent=2))
