@@ -3,7 +3,7 @@ import argparse
 import json
 import re
 import time
-from .common import ROOT, RUNTIME, compose, run, switch, upstream, save
+from .common import ROOT, RUNTIME, compose, run, switch, upstream, save, DEFAULT_ROUTING
 
 
 def once(remote):
@@ -34,7 +34,9 @@ def once(remote):
         (RUNTIME/'deploy.env').write_text(f"BLUE_VERSION={desired['blue_version']}\nGREEN_VERSION={desired['green_version']}\nFAIL_HEALTH=false\nFAIL_WORK=false\n")
         compose('up','-d','--wait','blue','green')
     path=RUNTIME/'gateway/upstreams.conf'
-    routing_drift=not path.exists() or path.read_text()!=expected
+    mode=RUNTIME/'gateway/routing.conf'
+    routing_drift=(not path.exists() or path.read_text()!=expected or
+                   not mode.exists() or mode.read_text()!=DEFAULT_ROUTING)
     if drift or routing_drift:
         switch(desired['traffic'])
     return {'at':time.time(),'revision':revision,'desired':desired,

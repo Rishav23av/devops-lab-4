@@ -46,7 +46,7 @@ def demonstrate():
     read_seconds=time.perf_counter()-start
     code,write=request(URL+'/data','POST',{'value':'write-after-failover'},headers);assert code==200
     result={'name':'Rishav','roll_no':'2301730245','backup_sha256':digest,
-        'restored_value':restored,'post_backup_write_present_in_restore':False,
+        'restored_value':restored,'post_backup_write_present_in_restore':restored=='after-backup-write',
         'restore_seconds':round(restore_seconds,3),'snapshot_age_seconds_at_check':round(snapshot_age,3),
         'failover_read_seconds':round(read_seconds,3),'failover_rto_seconds':round(time.perf_counter()-start,3),
         'lost_acknowledged_records':0,'post_failover_write_status':code,

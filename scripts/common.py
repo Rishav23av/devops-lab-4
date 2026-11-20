@@ -10,7 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT/'.runtime'
 RUNTIME.mkdir(exist_ok=True)
 os.chmod(RUNTIME, 0o700)
-URL = 'http://127.0.0.1:5040'
+URL = os.getenv('LAB4_URL','http://127.0.0.1:5040')
+DEFAULT_ROUTING = 'map $host $lab4_backend { default application; }\n'
 
 
 def run(args, check=True, env=None):
@@ -63,12 +64,25 @@ def switch(weights):
     old = path.read_text() if path.exists() else ''
     temp = folder/'upstreams.tmp'
     temp.write_text(upstream(weights));temp.replace(path)
+    (folder/'routing.conf').write_text(DEFAULT_ROUTING)
     result = run(['docker','exec','rishav-lab4-gateway','nginx','-t'], check=False)
     if result.returncode:
         path.write_text(old)
         raise RuntimeError('Gateway configuration rejected')
     run(['docker','exec','rishav-lab4-gateway','nginx','-s','reload'])
     time.sleep(0.2)
+
+
+def cohort(percent):
+    assert isinstance(percent,int) and 0 < percent <= 100
+    if percent==100:
+        text='map $host $lab4_backend { default green_pool; }\n'
+    else:
+        text=f'split_clients "$http_x_lab_user" $lab4_backend {{ {percent}% green_pool; * blue_pool; }}\n'
+    (RUNTIME/'gateway/routing.conf').write_text(text)
+    run(['docker','exec','rishav-lab4-gateway','nginx','-t'])
+    run(['docker','exec','rishav-lab4-gateway','nginx','-s','reload'])
+    time.sleep(.2)
 
 
 def app_health(name):

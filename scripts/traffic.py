@@ -3,15 +3,15 @@ import json
 import math
 import threading
 import time
-from .common import URL, RUNTIME, request, switch, compose, app_health, save
+from .common import URL, RUNTIME, request, switch, cohort, compose, app_health, save
 
 
-def sample(count=200, path='/work'):
+def sample(count=200, path='/work', users=False):
     observations=[]
-    for _ in range(count):
+    for index in range(count):
         start=time.perf_counter()
         try:
-            code, data=request(URL+path)
+            code, data=request(URL+path,headers={'X-Lab-User':f'user-{index}'} if users else {})
             observations.append({'status':code,'environment':data.get('environment','unknown'),
                 'ms':round((time.perf_counter()-start)*1000,3)})
         except Exception:
@@ -48,8 +48,16 @@ def blue_green():
 def canary():
     stages=[]
     for green in [10,25,50,100]:
-        switch({'blue':100-green,'green':green})
-        metrics=sample();metrics['requested_green_percent']=green
+        cohort(green)
+        metrics=sample(users=True);metrics['requested_green_percent']=green
+        metrics['sample_users']=200
+        stable=True
+        for user in range(20):
+            first=request(URL+'/version',headers={'X-Lab-User':f'user-{user}'})[1]['environment']
+            second=request(URL+'/version',headers={'X-Lab-User':f'user-{user}'})[1]['environment']
+            stable=stable and first==second
+        metrics['repeated_user_assignment_stable']=stable
+        assert stable
         metrics['decision']='promote' if metrics['error_rate']<.01 and metrics['p95_ms']<250 else 'rollback'
         stages.append(metrics)
         if metrics['decision']=='rollback':
@@ -58,14 +66,15 @@ def canary():
     switch({'blue':100,'green':0})
     (RUNTIME/'deploy.env').write_text('BLUE_VERSION=1.0.0\nGREEN_VERSION=2.0.0\nFAIL_HEALTH=false\nFAIL_WORK=true\n')
     compose('up','-d','--wait','green')
-    switch({'blue':90,'green':10})
-    bad=sample();bad['decision']='rollback' if bad['error_rate']>=.01 or bad['p95_ms']>=250 else 'promote'
+    cohort(10)
+    bad=sample(users=True);bad['decision']='rollback' if bad['error_rate']>=.01 or bad['p95_ms']>=250 else 'promote'
     if bad['decision']=='rollback':switch({'blue':100,'green':0})
     after=sample(100)
     assert bad['decision']=='rollback' and after['errors']==0
     result={'name':'Rishav','roll_no':'2301730245','promotion_stages':stages,'failed_release':bad,
         'after_rollback':after,'thresholds':{'error_rate':.01,'p95_ms':250},
-        'limitation':'short local batches, no user-stickiness or production SLO proof'}
+        'cohort_key':'X-Lab-User header, deterministic Nginx split_clients hash',
+        'limitation':'short local batches; a production deployment should use a trusted user identity'}
     save('canary.json',result)
     (RUNTIME/'deploy.env').write_text('BLUE_VERSION=1.0.0\nGREEN_VERSION=2.0.0\nFAIL_HEALTH=false\nFAIL_WORK=false\n')
     compose('up','-d','--wait','green');switch({'blue':100,'green':0})
