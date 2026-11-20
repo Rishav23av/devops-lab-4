@@ -24,7 +24,9 @@ pipeline {
         }
         stage('Candidate and integration gate') {
             steps {
-                sh 'python3 -m scripts.pipeline --prepare-only --scenario "$SCENARIO"'
+                withEnv(["SCENARIO=${params.SCENARIO ?: 'success'}"]) {
+                    sh 'python3 -m scripts.pipeline --prepare-only --scenario "$SCENARIO"'
+                }
             }
         }
         stage('Deploy') { steps { sh 'python3 -m scripts.promote' } }
