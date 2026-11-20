@@ -57,6 +57,7 @@ def canary():
             second=request(URL+'/version',headers={'X-Lab-User':f'user-{user}'})[1]['environment']
             stable=stable and first==second
         metrics['repeated_user_assignment_stable']=stable
+        metrics['repeated_users_checked']=20
         assert stable
         metrics['decision']='promote' if metrics['error_rate']<.01 and metrics['p95_ms']<250 else 'rollback'
         stages.append(metrics)

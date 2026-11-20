@@ -1,6 +1,8 @@
 import hashlib
 import json
 import time
+import os
+from pathlib import Path
 from .common import ROOT, RUNTIME, URL, request, run, save
 
 
@@ -22,8 +24,9 @@ def demonstrate():
     code,data=request(URL+'/data','POST',{'value':'after-backup-write'},headers);assert code==200
     time.sleep(.5)
     start=time.perf_counter()
+    host_folder=Path(os.getenv('LAB4_HOST_ROOT',str(ROOT)))/'.runtime/restore-data'
     run(['docker','run','-d','--name','rishav-lab4-restore','--label','devops.lab=4',
-        '-v',str(folder)+':/data','redis:7-alpine','redis-server','--appendonly','no'])
+        '-v',str(host_folder)+':/data','redis:7-alpine','redis-server','--appendonly','no'])
     try:
         for _ in range(50):
             result=run(['docker','exec','rishav-lab4-restore','redis-cli','GET','lab4:record'],check=False)

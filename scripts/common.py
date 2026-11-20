@@ -4,6 +4,8 @@ import subprocess
 import time
 import urllib.request
 import urllib.error
+import platform
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,6 +50,13 @@ def save(name, data):
     if isinstance(data, str):
         p.write_text(data.replace(str(ROOT), '.'))
     else:
+        if isinstance(data,dict):
+            release=Path('/etc/os-release')
+            operating_system=platform.platform()
+            if release.exists():
+                for line in release.read_text().splitlines():
+                    if line.startswith('PRETTY_NAME='):operating_system=line.split('=',1)[1].strip('"')
+            data=dict(data,execution_environment={'os':operating_system,'python':sys.version.split()[0]})
         p.write_text(json.dumps(data, indent=2)+'\n')
 
 
