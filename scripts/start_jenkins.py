@@ -17,11 +17,12 @@ if __name__=='__main__':
     else:
         run(['docker','run','-d','--name','rishav-lab4-jenkins','--label','devops.lab=4',
             '-p','127.0.0.1:8089:8080','-v','/var/run/docker.sock:/var/run/docker.sock',
-            '-v',str(workspace)+':/workspace','-v',str(RUNTIME)+':/workspace/.runtime',
+            '-v',str(workspace)+':/workspace','-v',str(RUNTIME)+':/lab4-runtime',
             '-v','rishav-lab4-jenkins-home:/var/jenkins_home',
             '-v',str(password)+':/run/secrets/jenkins-admin-password:ro',
             '-e','LAB4_HOST_ROOT='+str(ROOT),'-e','VAULT_ADDR=http://host.docker.internal:8240',
             '-e','LAB4_URL=http://host.docker.internal:5040',
+            '-e','LAB4_RUNTIME_DIR=/lab4-runtime',
             'rishav-lab4-jenkins-ubuntu:local'])
     print('Dedicated Ubuntu Jenkins controller: http://localhost:8089')
     print('Login: rishav; password remains in the protected runtime file.')

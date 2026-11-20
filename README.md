@@ -62,6 +62,8 @@ LAB4_HOST_ROOT allows Docker bind mounts to resolve to the host repository when
 Compose runs inside the controller. VAULT_ADDR and LAB4_URL point to the host's
 loopback-bound services through host.docker.internal. The Jenkins password and
 Vault bootstrap material remain in the ignored runtime directory.
+The controller uses a separate checkout and mounts runtime material outside that
+checkout, at /lab4-runtime. SCM workspace cleanup must never include secret files.
 
 These are controlled, single-host laboratory demonstrations. Vault uses local
 HTTP and a one-share bootstrap for this lab. Failover promotion is operator

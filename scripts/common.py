@@ -7,7 +7,7 @@ import urllib.error
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-RUNTIME = ROOT/'.runtime'
+RUNTIME = Path(os.getenv('LAB4_RUNTIME_DIR',str(ROOT/'.runtime')))
 RUNTIME.mkdir(exist_ok=True)
 os.chmod(RUNTIME, 0o700)
 URL = os.getenv('LAB4_URL','http://127.0.0.1:5040')
