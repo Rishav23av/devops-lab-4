@@ -47,6 +47,7 @@ tooling cache and Ubuntu image with:
 ```bash
 docker build -f jenkins/Tooling.Dockerfile -t rishav-lab4-tooling:local .
 docker build -f jenkins/Dockerfile -t rishav-lab4-jenkins-ubuntu:local .
+python3 -m scripts.start_jenkins
 ```
 
 The recorded build reused the matching tooling cache from the earlier labs.

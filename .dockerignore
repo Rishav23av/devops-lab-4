@@ -1,0 +1,11 @@
+.runtime
+.git
+__pycache__
+**/__pycache__
+.venv
+docs
+submission
+backups
+*.pdf
+*.png
+*.jpg

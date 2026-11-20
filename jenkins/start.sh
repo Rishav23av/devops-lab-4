@@ -7,4 +7,4 @@ git config --global user.name Rishav
 git config --global user.email 174773787+Rishav23av@users.noreply.github.com
 git config --global init.defaultBranch main
 git config --global --add safe.directory /workspace
-exec java -Djenkins.install.runSetupWizard=false -jar /opt/jenkins/jenkins.war --httpPort=8080
+exec java -Xmx768m -Djenkins.install.runSetupWizard=false -jar /opt/jenkins/jenkins.war --httpPort=8080
